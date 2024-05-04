@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for my ecommerce app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "backend",
+    "ecommerce"
+  ],
+  "author": "eritten",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.11",
+    "express": "^4.19.2",
+    "joi": "^17.13.1",
+    "joi-password-complexity": "^5.2.0",
+    "jsonwebtoken": "^9.0.2",
+<<<<<<< HEAD
+    "multer": "^1.4.5-lts.1",
+=======
+    "lodash": "^4.17.21",
+>>>>>>> feat/signup
+    "mysql2": "^3.9.7",
+    "nodemailer": "^6.9.13",
+    "sequelize": "^6.37.3",
+    "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "debug": "^4.3.4",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}

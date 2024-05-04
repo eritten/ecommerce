@@ -1,0 +1,9 @@
+{
+    "DB_HOST": "localhost",
+    "DB_USER": "root",
+    "DB_PASSWORD": "GyauEritten1234",
+    "DB_NAME": "demo",
+    "DB_DIALECT": "mysql",
+    "server_port": "80",
+    "token": "GyauEritten1234$"
+}
