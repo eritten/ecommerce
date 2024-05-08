@@ -43,7 +43,7 @@ const Navbar = () => {
             backgroundColor: colors.pickledBluewood
         }}
     >
-        <div className="nav-wrapper w-full max-w-[1200px] mx-auto flex flex-row justify-between items-center">
+        <div className="nav-wrapper w-full max-w-[1300px] mx-auto flex flex-row justify-between items-center">
             <Link to="/" className="logo uppercase text-white text-xl md:text-2xl lg:text-3xl font-semibold" data-aos="fade-left">
                 <h2>Logo</h2>
             </Link>
@@ -68,40 +68,40 @@ const Navbar = () => {
                 <li>
                     <IconButton
                         Icon={FaBookmark}
-                        linkTo="Saved"
+                        linkTo="/Saved"
                         label='Saved ads'
                     />
                 </li>
                 <li>
                     <IconButton
                         Icon={FaInfoCircle}
-                        linkTo="About"
+                        linkTo="/About"
                         label='About Us'
                     />
                 </li>
                 <li>
                     <IconButton
                         Icon={FaTools}
-                        linkTo="Services"
+                        linkTo="/Services"
                         label='Our Services'
                     />
                 </li>
                 <li>
                     <IconButton
                         Icon={FaPhone}
-                        linkTo="Contact"
+                        linkTo="/Contact"
                         label='Contact us'
                     />
                 </li>
                 <li>
                     <Link 
                         to="/signup"
-                        className='w-28 h-10 rounded-sm text-xl uppercase text-white font-bold relative mobile-signup-btn overflow-hidden block ml-3 nav-signup-btn' 
+                        className='app-button mobile-signup-btn nav-signup-btn' 
                     >
-                        <span className='w-full h-full flex-center duration-300' style={{
+                        <span className='w-full h-full flex-center duration-300 px-3' style={{
                             backgroundColor: colors.cinnabar
                         }}>Sign up</span>
-                        <span className='w-full h-full flex-center duration-300' style={{
+                        <span className='w-full h-full flex-center duration-300 px-3' style={{
                             backgroundColor: colors.curiousBlue
                         }}>Sign up</span>
                     </Link>
@@ -131,7 +131,7 @@ const Navbar = () => {
                     <li className='flex items-center gap-2'>
                         <IconButton
                             Icon={FaBookmark}
-                            linkTo="Saved"
+                            linkTo="/Saved"
                             label='Saved ads'
                             bgColor={colors.pickledBluewood}
                             infoStyle={{
@@ -143,7 +143,7 @@ const Navbar = () => {
                     <li className='flex items-center gap-2'>
                         <IconButton
                             Icon={FaInfoCircle}
-                            linkTo="About"
+                            linkTo="/About"
                             label='About Us'
                             bgColor={colors.pickledBluewood}
                             infoStyle={{
@@ -155,7 +155,7 @@ const Navbar = () => {
                     <li className='flex items-center gap-2'>
                         <IconButton
                             Icon={FaTools}
-                            linkTo="Services"
+                            linkTo="/Services"
                             label='Our Services'
                             bgColor={colors.pickledBluewood}
                             infoStyle={{
@@ -167,7 +167,7 @@ const Navbar = () => {
                     <li className='flex items-center gap-2'>
                         <IconButton
                             Icon={FaPhone}
-                            linkTo="Contact"
+                            linkTo="/Contact"
                             label='Contact us'
                             bgColor={colors.pickledBluewood}
                             infoStyle={{

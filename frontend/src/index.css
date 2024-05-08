@@ -1,14 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer components {
     /* reused styles */
     .flex-center {
       @apply flex items-center justify-center;
     }
     .container-wrapper {
-        @apply max-w-[1200px] mx-auto w-full;
+        @apply max-w-[1300px] mx-auto w-full;
+    }
+    .app-button {
+      @apply w-max h-10 rounded-sm text-base md:text-xl uppercase text-white font-bold relative overflow-hidden block ml-3;
     }
     .truncate {
         @apply overflow-hidden whitespace-nowrap overflow-ellipsis;
@@ -21,6 +24,6 @@
         @apply w-full py-2 px-3 h-full rounded-md text-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-opacity-50 transition duration-500 ease-in-out;
     }
     .header-wrapper {
-        @apply w-full h-full flex justify-center items-center flex-col gap-5 lg:gap-10 max-w-[1200px] mx-auto;
+        @apply w-full h-full flex justify-center items-center flex-col gap-5 lg:gap-10 max-w-[1300px] mx-auto;
     }
   }

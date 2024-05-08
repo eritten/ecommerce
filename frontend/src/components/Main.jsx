@@ -7,6 +7,10 @@ import Card from './Card'
 import colors from '../config/colors'
 
 function Main() {
+    
+    const handleSaveAd = () => {
+        console.log('Ad saved')
+    }
   return (
     <main className='py-5 md:py-10 px-2'>
         <div className="container-wrapper">
@@ -18,17 +22,19 @@ function Main() {
                 {/* end of categories */}
 
                 {/* main content */}
-                <section role='region' className='min-h-screen md:w-[85%]'>
+                <section role='region' className='min-h-screen md:w-[80%]'>
                     <div className="px-2 py-5">
                         <h2 className='text-center mb-5 text-2xl capitalize' style={{
                             color: colors.curiousBlue
-                        }}>Trending ads</h2>
+                        }} data-aos="flip-up">Trending ads</h2>
                         <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
                             <li>
                                 <Card
                                     name='Adidas shoes'
                                     price='$50'
-                                    image='https://picsum.photos/id/1/200/300'
+                                    // image='https://picsum.photos/id/1/200/300'
+                                    linkTo='/details?id=1'
+                                    saveAd={handleSaveAd}
                                 />
                             </li>
                             <li>

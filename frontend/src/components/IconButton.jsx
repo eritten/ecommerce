@@ -9,7 +9,6 @@ const IconButton = ({Icon=FaHome, linkTo="", bgColor = colors.buttercup, color="
 
     const handleMouseEnterOfIconButton = () => {
         const button = document.querySelector('.icon-button')
-        console.log(button)
         if(button) {
             const rect = button.getBoundingClientRect();
 

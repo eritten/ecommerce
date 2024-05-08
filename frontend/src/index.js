@@ -8,73 +8,134 @@ import {
 // custom imports
 import './index.css';
 import './App.css';
-import App from './App';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import DashboardPage from './pages/DashboardPage';
-import DetailsPage from './pages/DetailsPage';
-import FAQPage from './pages/FAQPage';
-import MyAdsPage from './pages/MyAdsPage';
-import PrivacyPage from './pages/PrivacyPage';
-import SavedPage from './pages/SavedPage';
-import ServicesPage from './pages/ServicesPage';
-import SettingsPage from './pages/SettingsPage';
-import TermsPage from './pages/TermsPage';
-import SignupPage from './pages/SignupPage';
 
+const LazyHomePage = React.lazy(() => import('./App'));
+const LazyAboutPage = React.lazy(() => import('./pages/AboutPage'));
+const LazyContactPage = React.lazy(() => import('./pages/ContactPage'));
+const LazyDashboardPage = React.lazy(() => import('./pages/DashboardPage'));
+const LazyDetailsPage = React.lazy(() => import('./pages/DetailsPage'));
+const LazyFAQPage = React.lazy(() => import('./pages/FAQPage'));
+const LazyMyAdsPage = React.lazy(() => import('./pages/MyAdsPage'));
+const LazyPrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
+const LazySavedPage = React.lazy(() => import('./pages/SavedPage'));
+const LazyServicesPage = React.lazy(() => import('./pages/ServicesPage'));
+const LazySettingsPage = React.lazy(() => import('./pages/SettingsPage'));
+const LazyTermsPage = React.lazy(() => import('./pages/TermsPage'));
+const LazyTipsPage = React.lazy(() => import('./pages/TipsPage'));
+const LazySignupPage = React.lazy(() => import('./pages/SignupPage'));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyHomePage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/about",
-    element: <AboutPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyAboutPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/contact",
-    element: <ContactPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyContactPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/dashboard",
-    element: <DashboardPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyDashboardPage />
+      </React.Suspense>
+    )
   },
   {
     path: "/details",
-    element: <DetailsPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyDetailsPage />
+      </React.Suspense>
+    )
   },
   {
     path: "/faq",
-    element: <FAQPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyFAQPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/my-ads",
-    element: <MyAdsPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyMyAdsPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/privacy",
-    element: <PrivacyPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyPrivacyPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/saved",
-    element: <SavedPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazySavedPage />
+      </React.Suspense>
+    ),
   },
   {
-    path: "/signup",
-    element: <SignupPage />,
+    path: "/signup", 
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazySignupPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/services",
-    element: <ServicesPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyServicesPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/settings",
-    element: <SettingsPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazySettingsPage />
+      </React.Suspense>
+    ),
   },
   {
     path: "/terms",
-    element: <TermsPage />,
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyTermsPage />
+      </React.Suspense>
+    ),
+  },
+  {
+    path: "/tips",
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyTipsPage />
+      </React.Suspense>
+    ),
   },
 ]);
 

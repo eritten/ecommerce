@@ -18,12 +18,22 @@ body {
     font-weight: 400;
 }
 img {
-    max-width: 100%;
+    max-width: 100%; 
     display: block;
+}
+ul {
+    list-style: none;
+    padding: 0;
 }
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
+}
+textarea, input {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    resize: none;
+    outline: none;
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -65,8 +75,11 @@ h1,h2,h3,h4,h5,h6 {
 .mobile-nav-hidden {
     transform: translateX(100%);
 }
-.nav-signup-btn:is(:hover, :focus-visible) span {
+.nav-signup-btn:is(:hover, :focus-visible, :focus-within) span {
     transform: translateY(-100%);
+}
+.mySliderSw {
+    width: 100%!important;
 }
 /* =================end of components */
 
