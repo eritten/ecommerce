@@ -45,37 +45,38 @@ const ContactPage = () => {
 
       // Remove animation class after the animation ends
       setTimeout(() => {
-        nameRef.current.classList.remove('animate__animated', 'animate__shakeX');
-        emailRef.current.classList.remove('animate__animated', 'animate__shakeX');
-        nameErrorRef.current.innerText = 'look';
-        emailErrorRef.current.innerText = '';
+        if(nameRef.current) nameRef.current.classList.remove('animate__animated', 'animate__shakeX');
+        if(emailRef.current) emailRef.current.classList.remove('animate__animated', 'animate__shakeX')
+        if(nameErrorRef.current) nameErrorRef.current.innerText = 'look';
+        if(emailErrorRef.current) emailErrorRef.current.innerText = '';
+        
       }, 2000);
 
       return;
     }
-    // Reset form fields
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+   
     // Move to the next step 
     setFormStep(formStep + 1);
   };
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    e.preventDefault();
     // Send the message to the server
-    if (!formData.message) {
+    if (formData.message.trim() === "") {
       messageRef.current.classList.add('animate__animated', 'animate__shakeX');
       msgErrorRef.current.innerText = 'You must enter a message';
+      return
     }
     // Remove animation class after the animation ends
     setTimeout(() => {
-      messageRef.current.classList.remove('animate__animated', 'animate__shakeX');
-      msgErrorRef.current.innerText = '';
+      if(msgErrorRef.current){
+        msgErrorRef.current.innerText = '';
+      }
+      if(messageRef.current){
+        messageRef.current.classList.remove('animate__animated', 'animate__shakeX');
+      }
     }, 2000);
 
-    console.log(formData);
     // Move to the next step
     setFormStep(formStep + 1);
   }
@@ -85,24 +86,36 @@ const ContactPage = () => {
     setFormStep(formStep - 1);
   };
 
+  useEffect(() => {
+    if(nameRef.current){
+      nameRef.current.focus();
+    }
+    if(messageRef.current){
+      messageRef.current.focus();
+    }
+  }, [formStep])
+
   return (
     <>
     <Navbar />
       <main role='main' className='py-10'>
         <div className="container-wrapper p-2">
+          <h1 className='text-2xl md:text-3xl text-center uppercase mb-5 text-green-500'>Send us a <span className='text-blue-500'>message</span></h1>
           {/* contact main wrapper box */}
           <div className="w-full sm:w-96 flex items-center h-80 bg-blue-100 mx-auto shadow-sm rounded-md gap-2 overflow-hidden">
-            {/* 1st contact form -take name and email */}
+            {/* 1st contact form - take name and email */}
             {formStep === 1 && (<form className='w-full h-full min-w-full' onSubmit={handleSubmit}>
-              <div className="w-full px-2 py-5" style={{
+              <div className="w-full px-2 py-5 animate__animated animate__bounceInDown" style={{
                 background: colors.shamrock
               }}>
-                <label htmlFor="name" className="block text-base md:text-lg lg:text-xl font-medium text-white">Name</label>
+                <label htmlFor="name" className="block text-base md:text-lg lg:text-xl font-medium text-white animate__animated animate__bounceInDown" style={{
+                  animationDelay: '0.3s'
+                }}>Name</label>
                 <input 
                   type="text" 
                   id="name" 
                   name="name" 
-                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-base md:text-lg p-1 border-gray-300 rounded-sm" 
+                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-base md:text-lg p-1 border-gray-300 rounded-sm"
                   placeholder='John Doe' 
                   ref={nameRef}
                   onChange={handleInputChange}
@@ -114,10 +127,13 @@ const ContactPage = () => {
                   role='alert'
                   className="sr-only"></span>
               </div>
-              <div className="mb-4 w-full px-2 py-5" style={{
-                background: colors.curiousBlue
+              <div className="mb-4 w-full px-2 py-5 animate__animated animate__bounceInDown" style={{
+                background: colors.curiousBlue,
+                animationDelay: '0.6s'
               }}>
-                <label htmlFor="email" className="block text-base md:text-lg lg:text-xl font-medium text-white">Email</label>
+                <label htmlFor="email" className="block text-base md:text-lg lg:text-xl font-medium text-white animate__animated animate__bounceInDown" style={{
+                  animationDelay: '0.9s'
+                }}>Email</label>
                 <input 
                   type="email" 
                   id="email" 
@@ -144,10 +160,12 @@ const ContactPage = () => {
             {/* end of 1st contact box */}
             {/* 2nd contact form - take the actual message*/}
             {formStep === 2 && (<form className='w-full h-full min-w-full' onSubmit={sendMessage}>
-              <div className="w-full px-2 py-5 h-3/5 mb-4" style={{
+              <div className="w-full px-2 py-5 h-3/5 mb-4 animate__animated animate__bounceInDown" style={{
                 background: colors.shamrock
               }}>
-                <label htmlFor="message" className="block text-base md:text-lg lg:text-xl font-medium text-white">What's on your mind?</label>
+                <label htmlFor="message" className="block text-base md:text-lg lg:text-xl font-medium text-white animate__animated animate__bounceInDown" style={{
+                  animationDelay: '0.3s'
+                }}>What's on your mind?</label>
                 <textarea 
                   id="message" 
                   name="message" 
@@ -155,12 +173,22 @@ const ContactPage = () => {
                   placeholder='I want to enquire about...'
                   ref={messageRef}
                   onChange={handleInputChange}
+                  aria-describedby='msg-error'
                 />
+                <span
+                  id="msg-error"
+                  ref={msgErrorRef}
+                  role='alert'
+                  className="sr-only"
+                ></span>
               </div>
-              <div className="w-full flex items-center justify-between">
+              <div className="w-full flex items-center justify-between p-2">
                 <Button
                   type="button"
                   label='back'
+                  style={{
+                    margin: 0
+                  }}
                   color1={colors.cinnabar}
                   color2={colors.buttercup}
                   onClick={goBack}
@@ -173,14 +201,25 @@ const ContactPage = () => {
               </div>
             </form>)}
             {/* end of 2nd contact form */}
-            {/* 3rd contact form - thank you message, then reset to contact form 1*/}
-            {formStep === 3 && (<div className='w-full h-full min-w-full flex flex-col items-center justify-center'>
-              <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold text-center'>Thank you for reaching out!</h2>
+            {/* 3rd contact form - thank you message*/}
+            {formStep === 3 && (<div className='w-full h-full min-w-full flex flex-col items-center justify-between pb-4'>
+              <div className="">
+                <div className="px-2 py-5" style={{
+                  background: colors.shamrock
+                }}>
+                  <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-center text-white mb-1 animate__animated animate__slideInRight' role='alert'>Thank you for reaching out!</h2>
+                </div>
+                <div className="w-full py-5" style={{
+                  background: colors.curiousBlue
+                }}>
+                  <p className='text-white text-center animate__animated animate__slideInLeft'>We will reply via your email as soon as possible</p>
+                </div>
+              </div>
               <Button 
                 type="button"
                 label='done'
-                color1={colors.cinnabar}
-                color2={colors.buttercup}
+                color1={colors.curiousBlue}
+                color2={colors.shamrock}
                 onClick={() => setFormStep(1)}
               />
             </div>)}

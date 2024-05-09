@@ -12,6 +12,7 @@ const SavedItem = ({name="Product name", image, price=1, condition="new", locati
     <Link
         to={`/details?product=${name}`}
         className="flex flex-col md:flex-row items-center justify-center p-2 border border-gray-200 rounded-md shadow-md  md:h-56 gap-2 bg-green-100"
+        data-aos="fade-up"
     >
         <div className="relative w-full h-48 sm:w-2/5 sm:h-full bg-slate-400 rounded-md">
             <img

@@ -39,7 +39,7 @@ function Header() {
         background: colors.shamrock
     }}>
         <div className="header-wrapper">
-            <h3 className="text-white text-4xl font-bold animate__animated animate__bounce text-center" aria-labelledby='search-input'>Looking to buy anything?</h3>
+            <h3 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold animate__animated animate__bounce text-center" aria-labelledby='search-input'>Looking to buy anything?</h3>
             {/* input box */}
             <div className="w-full lg:w-3/4 xl:w-3/5 relative h-16 animate__animated animate__shakeX animate__delay-1s">
                 <input 
