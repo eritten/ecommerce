@@ -1,25 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-<<<<<<< HEAD:backend/routers/users/signup.js
 const User = require('../../models/User');
 const { sendVerificationCode } = require('../../core/verification'); // Import the sendVerificationCode function
 const signupValidate = require('../../validators/signupValidator');
-=======
 const lodash = require('lodash');
 const User = require('../models/User');
 const { sendVerificationCode } = require('../core/verification'); // Import the sendVerificationCode function
 const signupValidate = require('../validators/signupValidator');
->>>>>>> feat/signup:backend/routers/signup.js
 
 // Route for user sign-up
 router.post('/signup', async (req, res) => {
     try {
         // Validate user sign-up data
-        const { error } = signupValidate(req.body);
-        if (error) {
-            return res.status(401).json({ error: error.details[0].message });
-        }
+
 
         // Extract validated user details
         const { email, password, firstname, lastname, telephone } = req.body;
