@@ -1,6 +1,6 @@
 // sync_db.js
 const sequelize = require('./core/init_db');
-const User = require('./models/User');
+const User = require('./models/user');
 const Product = require('./models/Product');
 const Message = require('./models/Message');
 const Review = require('./models/Review');
@@ -9,7 +9,7 @@ const ProductTag = require('./models/ProductTag');
 
 (async () => {
     try {
-        await sequelize.sync({ force: false }); // Set force to true to drop existing tables
+        await sequelize.sync({ force: true }); // Set force to true to drop existing tables
         console.log('Database tables synced successfully.');
         process.exit(0); // Exit with success code
     } catch (error) {

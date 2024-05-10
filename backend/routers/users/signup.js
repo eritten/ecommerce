@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../../models/User');
 const { sendVerificationCode } = require('../../core/verification'); // Import the sendVerificationCode function
-const signupValidate = require('../../validators/signupValidator');
 const lodash = require('lodash');
-const User = require('../models/User');
-const { sendVerificationCode } = require('../core/verification'); // Import the sendVerificationCode function
-const signupValidate = require('../validators/signupValidator');
+const User = require('../../models/user');
+
 
 // Route for user sign-up
 router.post('/signup', async (req, res) => {

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const config = require('config');
-const User = require('../../models/User');
+const User = require('../../models/user');
 
 router.post('/login', async (req, res) => {
     try {
