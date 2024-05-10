@@ -13,7 +13,7 @@ router.post('/signup', async (req, res) => {
 
 
         // Extract validated user details
-        const { email, password, firstname, lastname, telephone } = req.body;
+        const { email, password, fullname, telephone } = req.body;
 
         // Check if user with the given email already exists
         const existingUser = await User.findOne({ where: { email } });
@@ -37,8 +37,7 @@ router.post('/signup', async (req, res) => {
         const newUser = await User.create({
             email,
             password: hashedPassword,
-            firstname,
-            lastname,
+fullname,
             verificationCode, // Store the verification code in the database
             telephone,
             isVerified: false // Mark the user as unverified
