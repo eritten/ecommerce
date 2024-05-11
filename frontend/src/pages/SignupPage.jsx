@@ -24,7 +24,7 @@ const SignupPage = () => {
 
       <div className="flex justify-center items-center min-h-screen py-5 sm:py-10">
         <div className="w-full max-w-md bg-green-100 p-8 rounded shadow-lg">
-          <h2 className="text-2xl mb-4">{showLoginForm ? 'Login' : 'Sign Up'}</h2>
+          <h2 className="text-2xl mb-4" role='alert'>{showLoginForm ? 'Login' : 'Sign Up'}</h2>
           {showLoginForm ? (
             <LoginForm />
           ) : (

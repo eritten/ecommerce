@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import axios from 'axios';
 
 // custom imports
 import colors from '../config/colors';
@@ -35,8 +36,18 @@ const SignupForm = () => {
         };
         // Form validation
         if (isSignupFieldsValid) {
-            // Redirect to dashboard page
-            navigate('/dashboard');
+
+            axios.post('http://localhost:80/users/signup', {
+                    email: formData.email,
+                    fullname: formData.username,
+                    telephone: formData.phoneNumber,
+                    password: formData.password,
+                }).then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error('Error signing up user:', error);
+                });
 
             // Clear form fields
             setUsername('');
