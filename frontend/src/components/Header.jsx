@@ -10,11 +10,6 @@ function Header() {
     const [searchInput, setSearchInput] = useState('');
     const [searchClicked, setSearchClicked] = useState(false);
 
-    useEffect(() => {
-        const searchInput = document.getElementById('search-input');
-        searchInput.focus();
-    }, []);
-
     const shakeSearchInput = () => {
         const searchInput = document.getElementById('search-input');
         searchInput.classList.add('shake-animation');

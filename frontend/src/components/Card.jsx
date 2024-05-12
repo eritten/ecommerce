@@ -17,6 +17,7 @@ const Card = ({name, price, image="https://placehold.co/600x600?text=Ad+Image", 
         backgroundColor: colors.curiousBlue
       }}
       data-aos='fade-up'
+      aria-label={name}
     >
       <IconButton
         Icon={FaBookmark}

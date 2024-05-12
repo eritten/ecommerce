@@ -10,6 +10,8 @@ import colors from '../config/colors';
 import Button from './Button';
 import ErrorMsg from './ErrorMsg';
 import IconButton from './IconButton';
+import {useEmail} from '../context/EmailProvider';
+import LoadingCircle from '../assets/animation/LoadingCircle';
 
 const SignupForm = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -23,8 +25,11 @@ const SignupForm = () => {
     const [isSignupFieldsValid, setIsSignupFieldsValid] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-    let navigate = useNavigate();
+    const [signupError, setSignupError] = useState('');
+    const [loading, setLoading] = useState(false);
+    
+    const navigate = useNavigate();
+    const {setEmailLocal} = useEmail();
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -34,27 +39,35 @@ const SignupForm = () => {
             phoneNumber,
             password,
         };
-        // Form validation
-        if (isSignupFieldsValid) {
 
+        if (isSignupFieldsValid) {
+            setLoading(true);
             axios.post('http://localhost:80/users/signup', {
                     email: formData.email,
                     fullname: formData.username,
                     telephone: formData.phoneNumber,
                     password: formData.password,
                 }).then((response) => {
-                    console.log(response.data);
-                })
-                .catch((error) => {
-                    console.error('Error signing up user:', error);
-                });
+                    if(response?.status === 201) {
+                        // Set email in context
+                        setEmailLocal(formData.email);
 
-            // Clear form fields
-            setUsername('');
-            setEmail('');
-            setPhoneNumber('');
-            setPassword('');
-            setConfirmPassword('');
+                        // Clear form fields
+                        setUsername('');
+                        setEmail('');
+                        setPhoneNumber('');
+                        setPassword('');
+                        setConfirmPassword('');
+
+                        //navigate to code verification page 
+                        navigate('/verify');
+                    }
+                }).catch((error) => {
+                    setSignupError(error?.response?.data?.error || 'An error occurred');
+                    console.log('Error signing up user:', error);
+                }).finally(() => {
+                    setLoading(false);
+                });
         }
     };
 
@@ -107,6 +120,13 @@ const SignupForm = () => {
 
     return (
         <form onSubmit={handleSignUp}>
+            <LoadingCircle visible={loading} />
+            <ErrorMsg 
+                msg={signupError} 
+                isVisible={signupError} 
+                className="bg-red-100 text-red-500 p-2 rounded text-xl md:text-2xl mb-4 text-center font-bold"
+                role="alert"
+            />
             {/* username */}
             <div className="mb-2 md:mb-4">
                 <label htmlFor="username" className="block text-gray-700">
@@ -183,6 +203,7 @@ const SignupForm = () => {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => handlePasswordChange(e.target.value)}
+                        onPaste={(e) => e.preventDefault()}
                     />
                     <IconButton
                         Icon={showPassword ? FaRegEyeSlash : FaRegEye}
@@ -209,6 +230,7 @@ const SignupForm = () => {
                         placeholder="Confirm your password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        onPaste={(e) => e.preventDefault()}
                     />
                     <IconButton
                         Icon={showConfirmPassword ? FaRegEyeSlash : FaRegEye}

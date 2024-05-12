@@ -1,0 +1,66 @@
+.loading-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    position: absolute;
+  }
+  
+  .path {
+    stroke: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Apply gradient color */
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite, changeColor 6s linear infinite; /* Add animation for color change */
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+  
+  @keyframes changeColor {
+    0% {
+      stroke: red;
+    }
+    14.3% {
+      stroke: orange;
+    }
+    28.6% {
+      stroke: yellow;
+    }
+    42.9% {
+      stroke: green;
+    }
+    57.2% {
+      stroke: blue;
+    }
+    71.5% {
+      stroke: indigo;
+    }
+    85.8% {
+      stroke: violet;
+    }
+    100% {
+      stroke: red;
+    }
+  }
+  

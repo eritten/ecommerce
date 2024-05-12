@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import EmailProvider from './context/EmailProvider';
 
 // custom imports
 import './index.css';
@@ -23,6 +24,7 @@ const LazySettingsPage = React.lazy(() => import('./pages/SettingsPage'));
 const LazyTermsPage = React.lazy(() => import('./pages/TermsPage'));
 const LazyTipsPage = React.lazy(() => import('./pages/TipsPage'));
 const LazySignupPage = React.lazy(() => import('./pages/SignupPage'));
+const LazyCodeVerifyPage = React.lazy(() => import('./pages/CodeVerifyPage'));
 
 const router = createBrowserRouter([
   {
@@ -137,12 +139,22 @@ const router = createBrowserRouter([
       </React.Suspense>
     ),
   },
+  {
+    path: "/verify",
+    element: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <LazyCodeVerifyPage />
+      </React.Suspense>
+    ),
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <EmailProvider>
+      <RouterProvider router={router} />
+    </EmailProvider>
   </React.StrictMode>
 );
 
