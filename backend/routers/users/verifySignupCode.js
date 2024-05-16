@@ -19,6 +19,7 @@ router.post('/verify', async (req, res) => {
         if (user.verificationCode != verificationCode) {
             return res.status(401).json({ error: 'Invalid verification code' });
         }
+
         // Update the user's isVerified field to true
         user.verificationCode = "";
         user.isVerified = true;

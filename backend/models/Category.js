@@ -1,5 +1,6 @@
+// models/Category.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../core/init_db');
+const sequelize = require('../config/database');
 
 const Category = sequelize.define('Category', {
     name: {

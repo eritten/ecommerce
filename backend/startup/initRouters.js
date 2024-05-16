@@ -6,6 +6,7 @@ const deleteAccountRouter = require('../routers/users/deleteAccount');
 const passwordResetRouter = require('../routers/users/resetPassword');
 const verifySignupCodeRouter = require('../routers/users/verifySignupCode');
 const changeResetPasswordRouter = require('../routers/users/changeResetPassword');
+const userDataRouter = require('../routers/users/me');
 
 function initRouters(app) {
     app.use('/users', signupRouter);
@@ -16,6 +17,7 @@ function initRouters(app) {
     app.use('/users', passwordResetRouter);
     app.use('/users', verifySignupCodeRouter);
     app.use('/users', changeResetPasswordRouter);
+    app.use('/users', userDataRouter);
 }
 
 module.exports = initRouters;
