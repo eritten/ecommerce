@@ -4,9 +4,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import EmailProvider from './context/EmailProvider';
 
 // custom imports
+import EmailProvider from './context/EmailProvider';
+import TokenProvider from './context/TokenProvider';
+import FullPageAnimation from './assets/animation/FullPageAnimation';
 import './index.css';
 import './App.css';
 
@@ -25,12 +27,13 @@ const LazyTermsPage = React.lazy(() => import('./pages/TermsPage'));
 const LazyTipsPage = React.lazy(() => import('./pages/TipsPage'));
 const LazySignupPage = React.lazy(() => import('./pages/SignupPage'));
 const LazyCodeVerifyPage = React.lazy(() => import('./pages/CodeVerifyPage'));
+const LazyPostAdPage = React.lazy(() => import('./pages/PostAdPage'));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyHomePage />
       </React.Suspense>
     ),
@@ -38,7 +41,7 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyAboutPage />
       </React.Suspense>
     ),
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyContactPage />
       </React.Suspense>
     ),
@@ -54,7 +57,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyDashboardPage />
       </React.Suspense>
     )
@@ -62,7 +65,7 @@ const router = createBrowserRouter([
   {
     path: "/details",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyDetailsPage />
       </React.Suspense>
     )
@@ -70,7 +73,7 @@ const router = createBrowserRouter([
   {
     path: "/faq",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyFAQPage />
       </React.Suspense>
     ),
@@ -78,7 +81,7 @@ const router = createBrowserRouter([
   {
     path: "/my-ads",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyMyAdsPage />
       </React.Suspense>
     ),
@@ -86,7 +89,7 @@ const router = createBrowserRouter([
   {
     path: "/privacy",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyPrivacyPage />
       </React.Suspense>
     ),
@@ -94,7 +97,7 @@ const router = createBrowserRouter([
   {
     path: "/saved",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazySavedPage />
       </React.Suspense>
     ),
@@ -102,7 +105,7 @@ const router = createBrowserRouter([
   {
     path: "/signup", 
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazySignupPage />
       </React.Suspense>
     ),
@@ -110,7 +113,7 @@ const router = createBrowserRouter([
   {
     path: "/services",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyServicesPage />
       </React.Suspense>
     ),
@@ -118,7 +121,7 @@ const router = createBrowserRouter([
   {
     path: "/settings",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazySettingsPage />
       </React.Suspense>
     ),
@@ -126,7 +129,7 @@ const router = createBrowserRouter([
   {
     path: "/terms",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyTermsPage />
       </React.Suspense>
     ),
@@ -134,7 +137,7 @@ const router = createBrowserRouter([
   {
     path: "/tips",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyTipsPage />
       </React.Suspense>
     ),
@@ -142,8 +145,16 @@ const router = createBrowserRouter([
   {
     path: "/verify",
     element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<FullPageAnimation />}>
         <LazyCodeVerifyPage />
+      </React.Suspense>
+    ),
+  },
+  {
+    path: "/post-ad",
+    element: (
+      <React.Suspense fallback={<FullPageAnimation />}>
+        <LazyPostAdPage />
       </React.Suspense>
     ),
   },
@@ -152,9 +163,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <TokenProvider>
     <EmailProvider>
       <RouterProvider router={router} />
     </EmailProvider>
+    </TokenProvider>
   </React.StrictMode>
 );
 

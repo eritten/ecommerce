@@ -42,6 +42,7 @@ const SignupForm = () => {
 
         if (isSignupFieldsValid) {
             setLoading(true);
+
             axios.post('http://localhost:80/users/signup', {
                     email: formData.email,
                     fullname: formData.username,
@@ -245,11 +246,12 @@ const SignupForm = () => {
                 )}
             </div>
             {/* end of confirm password */}
-            {isSignupFieldsValid && <Button
+            {!loading && isSignupFieldsValid && 
+            (<Button
                 label="Sign Up"
                 color1={colors.shamrock}
                 type="submit"
-            />}
+            />)}
         </form>
     );
 };

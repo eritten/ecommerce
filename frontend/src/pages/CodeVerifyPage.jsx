@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // custom imports
 import colors from '../config/colors';
-import {useEmail} from '../context/EmailProvider'
 import ErrorMsg from '../components/ErrorMsg';
 import LoadingCircle from '../assets/animation/LoadingCircle';
+import {useEmail} from '../context/EmailProvider'
+import { useToken } from '../context/TokenProvider';
 
 const CodeVerifyPage = ({}) => {
     const [code, setCode] = useState(['', '', '', '', '', '']);
@@ -14,6 +16,7 @@ const CodeVerifyPage = ({}) => {
 
     const navigate = useNavigate();
     const { email } = useEmail();
+    const { setToken, setIsAuthenticated } = useToken();
 
     // Focus on the first input field when the component mounts
     useEffect(() => {
@@ -40,15 +43,33 @@ const CodeVerifyPage = ({}) => {
       }
   };
 
+  const handleSubmitCode = () => {
+    setLoading(true);
+
+    axios.post('http://localhost:80/users/verify', { email: email, verificationCode: code.join('') }).then((res) => {
+      const authToken = res?.data?.token;
+      setToken(authToken);
+      setIsAuthenticated(true);
+
+      // store the token in local storage
+      localStorage.setItem('token', authToken);
+
+      // navigate to the dashboard
+      navigate('/dashboard');
+    }).catch((err) => {
+      setLoading(false);
+      setError(err?.response?.data?.error);
+    }).finally(() => {
+      setCode(['', '', '', '', '', '']);
+      setLoading(false);
+    });
+  }
+
   // if all fields are filled
   useEffect(() => {
     if (code.every((digit) => digit)) {
-      setError("Invalid code");
-      setLoading(true);
-    } else {
-      setError(null);
-      setLoading(false);
-    }
+      handleSubmitCode();
+    } 
   } , [code]);
 
     return (
@@ -67,7 +88,7 @@ const CodeVerifyPage = ({}) => {
                         id={`code${index}`}
                         type="text"
                         maxLength={1}
-                        className="w-8 h-8 md:w-12 md:h-12 text-2xl border rounded-md text-center mx-2"
+                        className="w-8 h-8 md:w-12 md:h-12 text-base md:text-2xl border rounded-md text-center mx-1 md:mx-2"
                         value={digit}
                         onChange={(e) => handleChange(index, e.target.value)}
                         onKeyDown={(e) => handleBackspace(index, e)}

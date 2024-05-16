@@ -1,13 +1,20 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+
+// custom imports
+import DashboardNav from '../components/DashboardNav'
 import Footer from '../components/Footer'
+import DashboardSideBar from '../components/DashboardSideBar'
 
 const DashboardPage = () => {
   return (
     <>
-      <Navbar />
+      <DashboardNav />
 
-      <main role='main' className='py-10'></main>
+      <main role='main' className='py-10'>
+        <div className="container-wrapper">
+          <DashboardSideBar />
+        </div>
+      </main>
 
       <Footer />
     </>

@@ -5,10 +5,13 @@ import {Link} from 'react-router-dom'
 // custom imports
 import IconButton from './IconButton';
 import colors from '../config/colors';
+import { useToken } from '../context/TokenProvider';
 
 const Navbar = () => {
     const [isFixed, setIsFixed] = useState(false);
     const [mobileNavVisible, setMobileNavVisible] = useState(false);
+
+    const {isAuthenticated} = useToken();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,15 +44,15 @@ const Navbar = () => {
         className={`py-3 md:py-5 px-2 duration-500 ease-in-out z-20 ${isFixed ? 'fixed top-0 left-0 w-full z-50 bg-white shadow-lg' : 'relative'}`}  
         style={{
             backgroundColor: colors.pickledBluewood
-        }}
+        }} 
     >
         <div className="nav-wrapper w-full max-w-[1300px] mx-auto flex flex-row justify-between items-center">
             <Link to="/" className="logo uppercase text-white text-xl md:text-2xl lg:text-3xl font-semibold" data-aos="fade-left">
                 <h2>Logo</h2>
             </Link>
-            <IconButton
+            <IconButton 
                 Icon={FaHamburger}
-                label='Open Menu'
+                label='Open navigation Menu.'
                 bgColor={colors.cinnabar}
                 infoStyle={{
                     opacity: 0
@@ -94,17 +97,30 @@ const Navbar = () => {
                     />
                 </li>
                 <li>
-                    <Link 
-                        to="/signup"
-                        className='app-button mobile-signup-btn nav-signup-btn' 
-                    >
-                        <span className='w-full h-full flex-center duration-300 px-3' style={{
-                            backgroundColor: colors.cinnabar
-                        }}>Sign up</span>
-                        <span className='w-full h-full flex-center duration-300 px-3' style={{
-                            backgroundColor: colors.curiousBlue
-                        }}>Sign up</span>
-                    </Link>
+                    {!isAuthenticated ? 
+                        <Link 
+                            to="/signup"
+                            className='app-button mobile-signup-btn nav-signup-btn' 
+                        >
+                            <span className='w-full h-full flex-center duration-300 px-3' style={{
+                                backgroundColor: colors.cinnabar
+                            }}>Sign up</span>
+                            <span className='w-full h-full flex-center duration-300 px-3' style={{
+                                backgroundColor: colors.curiousBlue
+                            }}>Sign up</span>
+                        </Link> : 
+                        <Link
+                            to="/dashboard"
+                            className='app-button mobile-signup-btn nav-signup-btn'
+                        >
+                            <span className='w-full h-full flex-center duration-300 px-3' style={{
+                                backgroundColor: colors.cinnabar
+                            }}>Dashboard</span>
+                            <span className='w-full h-full flex-center duration-300 px-3' style={{
+                                backgroundColor: colors.curiousBlue
+                            }}>Dashboard</span>
+                        </Link>
+                    }
                 </li>
             </ul>
             {/* mobile nav */}
@@ -177,16 +193,27 @@ const Navbar = () => {
                         <h2 className='text-2xl uppercase text-white'>contact us</h2>
                     </li>
                     <li>
+                        {!isAuthenticated ? 
                         <Link 
                             style={{
                             backgroundColor: colors.buttercup
                             }}
                             to="/signup"
                             className='w-28 h-10 rounded-sm text-xl uppercase text-white font-bold relative mobile-signup-btn overflow-hidden block' 
-                        >
+                            >
                             <span className='absolute inset-0 flex-center bg-red-400 mobile-signup-btn-bg duration-300'></span>
                             <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-nowrap pointer-events-none'>Sign up</span>
-                        </Link>
+                        </Link> :
+                        <Link
+                            to="/dashboard"
+                            className='w-32 h-10 rounded-sm text-xl uppercase text-white font-bold relative mobile-signup-btn overflow-hidden block' 
+                            style={{
+                                backgroundColor: colors.buttercup
+                            }}
+                        >
+                            <span className='absolute inset-0 flex-center bg-red-400 mobile-signup-btn-bg duration-300'></span>
+                            <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-nowrap pointer-events-none text-base'>Dashboard</span>
+                        </Link>}
                     </li>
                 </ul>
             </nav>

@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import { FaHome } from 'react-icons/fa';
 import {Link} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import colors from '../config/colors'
 
-const IconButton = ({Icon=FaHome, linkTo="", bgColor = colors.buttercup, color="white",label="Go to Home", infoStyle, className, ...otherProps}) => {
+const IconButton = ({Icon,FaIcon, linkTo="", bgColor = colors.buttercup, color="white",label="Go to Home", infoStyle, className, ...otherProps}) => {
     const [labelPosition, setLabelPosition] = useState({top: '90%', right: '50%'})
 
     const handleMouseEnterOfIconButton = () => {
@@ -39,7 +39,8 @@ const IconButton = ({Icon=FaHome, linkTo="", bgColor = colors.buttercup, color="
         onMouseEnter={handleMouseEnterOfIconButton}
         {...otherProps}
     >
-        <Icon />
+        {Icon && <Icon />}
+        {FaIcon && <FontAwesomeIcon icon={FaIcon} />}
         {/* icon info */}
         <div className="absolute bg-yellow-100 min-w-max px-2 py-[2px] rounded-sm icon-button-info shadow-sm pointer-events-none z-[2]" style={mergedStyles}>
             <span className="text-slate-700 text-xs font-bold tracking-normal block py-0" role='alert'>{label}</span>

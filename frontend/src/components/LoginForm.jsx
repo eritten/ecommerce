@@ -1,27 +1,54 @@
 import React, {useState, useRef, useEffect} from 'react';
 import 'animate.css'
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // custom imports
 import Button from '../components/Button'
 import IconButton from './IconButton';
 import colors from '../config/colors';
+import ErrorMsg from './ErrorMsg';
+import { useToken } from '../context/TokenProvider';
 
 const LoginForm = ({ toggleLoginForm }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const emailErrorRef = useRef(null);
   const passwordErrorRef = useRef(null);
+  const { token,setToken } = useToken();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (email.trim() && password) {
-      console.log('Login form submitted');
+      axios.post('http://localhost:80/users/login', { emailOrTelephone: email, password }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      }).then((res) => {
+        const authToken = res?.data?.token;
+        setToken(authToken);
+
+        // store the token in local storage
+        localStorage.setItem('token', authToken);
+
+        // clear the form
+        setEmail('');
+        setPassword('');
+        setError(null);
+
+        // redirect to the dashboard
+        navigate('/dashboard');
+      }).catch((err) => {
+        setError(err?.response?.data?.error || err?.message || 'An error occurred');
+      })
     } else {
       if(!email.trim()) {
         emailRef.current.classList.add('animate__animated', 'animate__shakeX');
@@ -40,14 +67,27 @@ const LoginForm = ({ toggleLoginForm }) => {
       }, 2000);
     }
   };
+
+  // focus on the email input field
   useEffect(() => {
     if (emailRef) {
       emailRef.current.focus()
     }
   }, []);
 
+   // Log the token whenever it changes
+   useEffect(() => {
+    console.log("Token is", token);
+  }, [token]);
+
   return (
     <form onSubmit={handleSubmit}>
+      <ErrorMsg
+        msg={error}
+        isVisible={error}
+        className="mb-2 bg-red-100 py-1 px-2 text-center rounded"
+        role='alert'
+      />
       {/* email */}
       <div className="mb-4">
         <label htmlFor="email" className="block text-gray-700">Email:</label>

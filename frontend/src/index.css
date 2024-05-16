@@ -11,7 +11,7 @@
         @apply max-w-[1300px] mx-auto w-full;
     }
     .app-button {
-      @apply w-max h-10 rounded-sm text-base md:text-xl uppercase text-white font-bold relative overflow-hidden block ml-3;
+      @apply w-max h-10 rounded-sm text-base md:text-xl uppercase text-white font-bold relative overflow-hidden block;
     }
     .truncate {
         @apply overflow-hidden whitespace-nowrap overflow-ellipsis;

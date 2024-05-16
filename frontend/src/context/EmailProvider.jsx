@@ -2,7 +2,7 @@ import React, {createContext, useContext, useState} from "react";
 
 const EmailContext = createContext();
 
-export const EmailProvider = ({children}) => {
+const EmailProvider = ({children}) => {
     const [email, setEmailLocal] = useState('');
 
     return (
