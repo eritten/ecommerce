@@ -19,8 +19,15 @@ router.post('/login', async (req, res) => {
                 ]
             }
         });
+
         if (!user) {
-            return res.status(401).json({ error: 'Invalid email/telephone or password' });
+            return res.status(401).json({ error: 'Invalid email/telephone' });
+        }
+
+        // Verify password
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) {
+            return res.status(401).json({ error: 'Invalid password for the specified user' });
         }
 
         // Check if the user is verified
@@ -28,14 +35,9 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'User account is not verified' });
         }
 
-        // Verify password
-        const isValidPassword = await bcrypt.compare(password, user.password);
-        if (!isValidPassword) {
-            return res.status(401).json({ error: 'Invalid email/telephone or password' });
-        }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user.id }, config.get('token'), { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id }, config.get('token'));
 
         res.json({ token });
     } catch (error) {
