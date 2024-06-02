@@ -7,7 +7,9 @@ const lodash = require('lodash');
 
 router.get('/me', authenticateJWT, async (req, res) => {
     const userId = req.user.userId;
-    const user = await User.findOne({ id: userId });
+    const user = await User.findByPk(userId);
+    console.log(user);
+
     const userData = lodash.pick(user, ['id', 'email', 'telephone', 'fullname']);
     res.json(userData);
 });

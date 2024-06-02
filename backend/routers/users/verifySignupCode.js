@@ -26,7 +26,7 @@ router.post('/verify', async (req, res) => {
         await user.save();
 
         // Generate JWT token for user authentication
-        const token = jwt.sign({ userId: user.id }, config.get('token'), { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, config.get('token'), { expiresIn: '1h' });
 
         // Return success response with token
         res.status(200).json({ message: 'Verification successful', token });
