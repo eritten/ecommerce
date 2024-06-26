@@ -1,6 +1,4 @@
 const { Sequelize } = require('sequelize');
-
-// Assuming you're using the 'config' module to manage environment variables
 const config = require('config');
 
 // Extracting database URL from the configuration
