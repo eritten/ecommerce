@@ -10,6 +10,7 @@ djangorestframework-simplejwt = "*"
 channels = {extras = ["daphne"], version = "*"}
 djoser = "*"
 pillow = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
