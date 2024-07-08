@@ -163,4 +163,4 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'eritten2@gmail.com'
 
-ASGI_APPLICATION = "asgi.application"
+ASGI_APPLICATION = "dbackend.asgi.application"
