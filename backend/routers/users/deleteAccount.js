@@ -4,13 +4,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const config = require('config');
-const User = require('../../models/User');
+const User = require('../../models/user-model');
 const authenticateJWT = require('../../middleware/authMiddleware');
 
 // Delete user account route
 router.delete('/delete-user', authenticateJWT, async (req, res) => {
     try {
-        const userId = req.user.userId;
+        const userId = req.user.id;
 
         // Find the user by userId
         const user = await User.findByPk(userId);

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const config = require('config');
-const User = require('../../models/user');
+const User = require('../../models/user-model');
 
 router.post('/login', async (req, res) => {
     try {
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
 
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user.id }, config.get('token'));
+        const token = jwt.sign({ id: user.id }, config.get('token'));
 
         res.json({ token });
     } catch (error) {

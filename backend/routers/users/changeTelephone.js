@@ -4,14 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const config = require('config');
-const User = require('../../models/User');
+const User = require('../../models/user-model');
 const authenticateJWT = require('../../middleware/authMiddleware');
 
 // Update telephone number route
 router.put('/change-telephone', authenticateJWT, async (req, res) => {
     try {
         const { newTelephoneNumber } = req.body;
-        const userId = req.user.userId; // Assuming you attach user info to req.user
+        const userId = req.user.id;
 
         // Find the user by userId
         const user = await User.findByPk(userId);

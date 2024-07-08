@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { sendPasswordResetVerificationCode } = require('../../core/verification');
-const User = require('../../models/user');
+const User = require('../../models/user-model');
 
 router.post('/reset-password', async (req, res) => {
     try {

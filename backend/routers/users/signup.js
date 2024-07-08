@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const { sendSignupVerificationCode } = require('../../core/verification');
 const lodash = require('lodash');
-const User = require('../../models/user');
+const User = require('../../models/user-model');
 
 // Route for user sign-up
 router.post('/signup', async (req, res) => {

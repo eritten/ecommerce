@@ -14,6 +14,5 @@ const Category = sequelize.define('Category', {
     },
 });
 
-Category.hasMany(Product);
 
 module.exports = Category;

@@ -17,20 +17,25 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     verificationCode: {
         type: DataTypes.STRING, allowNull: false
+    },
+    profileImageUrl: {
+        type: DataTypes.STRING, allowNull: true
     },
     isVerified: { type: DataTypes.BOOLEAN, defaultValue: false },
     telephone: {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, {
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-});
+
+},
+
+    {
+        timestamps: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    });
 
 
 module.exports = User;

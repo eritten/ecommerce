@@ -2,7 +2,7 @@ const express = require('express');
 const config = require('config');
 const router = express.Router();
 const jwt = require('jsonwebtoken'); // Import JWT module
-const User = require('../../models/user');
+const User = require('../../models/user-model');
 
 // Route to verify the verification code
 router.post('/verify', async (req, res) => {
