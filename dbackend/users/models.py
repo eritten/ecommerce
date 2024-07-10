@@ -31,8 +31,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     profile_image_url = models.ImageField(upload_to="profile-images")
-    profile_image_slug = models.SlugField()
     telephone = models.CharField(max_length=255, blank=True, null=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    verificationCode = models.CharField(max_length=255, blank=True, null=True)
 
     objects = UserManager()
 

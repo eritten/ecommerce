@@ -11,6 +11,18 @@ channels = {extras = ["daphne"], version = "*"}
 djoser = "*"
 pillow = "*"
 django-cors-headers = "*"
+django-filter = "*"
+transformers = "*"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
+numpy = "*"
+scipy = "*"
+implicit = "*"
+textblob = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
