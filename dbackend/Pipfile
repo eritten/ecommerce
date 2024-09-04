@@ -23,6 +23,7 @@ textblob = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 drf-yasg = "*"
+whitenoise = "*"
 
 [dev-packages]
 
