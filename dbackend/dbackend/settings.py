@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     'users',
     'ads',
-    'daphne',
+#    'daphne',
     'feedback',
     'corsheaders',
     'django_filters',
@@ -170,7 +170,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'eritten2@gmail.com'
 
-ASGI_APPLICATION = "dbackend.asgi.application"
+#ASGI_APPLICATION = "dbackend.asgi.application"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
