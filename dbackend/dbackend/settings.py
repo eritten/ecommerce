@@ -86,13 +86,12 @@ WSGI_APPLICATION = 'dbackend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fallaah',  # Replace with your database name
-        'USER': os.environ.get("db_username"),     # Replace with your MySQL username
-        'PASSWORD': os.environ.get("db_password"),  # Replace with your MySQL password
+        'USER': "root",     # Replace with your MySQL username
+        'PASSWORD': "!Store526$",  # Replace with your MySQL password
         'HOST': 'localhost',  # Set to the host of your MySQL server
         'PORT': '3306',       # Default MySQL port
     }
